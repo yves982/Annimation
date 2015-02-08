@@ -1,19 +1,20 @@
 package ui;
 
-import java.awt.EventQueue;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+
 import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
 @SuppressWarnings("serial")
 public class MainFrame extends JFrame implements WindowListener {
 	private ScheduledExecutorService scheduler;
 
 	public MainFrame() {
-		EventQueue.invokeLater(() ->initUI());
+		initUI();
 	}
 
 	private void initUI() {
@@ -25,7 +26,7 @@ public class MainFrame extends JFrame implements WindowListener {
 		
 		scheduler = Executors.newScheduledThreadPool(1);
 		scheduler.scheduleAtFixedRate(() -> {
-			EventQueue.invokeLater(() -> { 
+			SwingUtilities.invokeLater(() -> { 
 				board.rotate();
 			});
 		}, 0, 140, TimeUnit.MILLISECONDS);

@@ -1,6 +1,6 @@
 package launcher;
 
-import java.awt.EventQueue;
+import javax.swing.SwingUtilities;
 
 import ui.MainFrame;
 
@@ -11,8 +11,10 @@ public class Main {
 	}
 
 	private static void initFrame() {
-		MainFrame frm = new MainFrame();
-		EventQueue.invokeLater( () -> frm.setVisible(true));
+		SwingUtilities.invokeLater( () -> {
+			MainFrame frm = new MainFrame();
+			frm.setVisible(true);
+		});
 	}
 
 }
